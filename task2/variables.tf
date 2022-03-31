@@ -1,3 +1,15 @@
+variable "access_key" {
+  type        = string
+  description = "Please enter your access key"
+  sensitive   = true
+}
+
+variable "secret_key" {
+  type        = string
+  description = "Please enter your secret key"
+  sensitive   = true
+}
+
 variable "region_name" {
   type        = string
   description = "Please enter your region name for deploy"
@@ -13,11 +25,6 @@ variable "vpc_cidr" {
   type        = string
   description = "Please enter CIDR for your VPC"
   default     = "192.168.0.0/16"
-}
-
-variable "subnets-private" {
-  type    = list(string)
-  default = ["192.168.1.0/24", "192.168.2.0/24"]
 }
 
 variable "subnets-public" {
@@ -49,7 +56,7 @@ variable "common_tags" {
   default = {
     Owners     = "Valentin Kozlov"
     Builder    = "by Terraform"
-    Enviroment = "Dev"
+    Enviroment = "dev"
   }
 }
 
@@ -68,4 +75,48 @@ variable "autoscaling_max" {
 variable "autoscaling_min_elb_capacity" {
   type    = string
   default = "2"
+}
+
+variable "db_engine" {
+  description = "Please enter engine for your DB"
+  type        = string
+  default     = "mariadb"
+}
+
+variable "db_engine_version" {
+  description = "Please enter engine version for your DB"
+  type        = string
+  default     = "10.6.7"
+}
+
+variable "db_instance_class" {
+  description = "Please enter instance type for your DB"
+  type        = string
+  default     = "db.t3.micro"
+}
+
+variable "db_name" {
+  description = "Please enter name your DB"
+  type        = string
+  default     = "dbweb"
+}
+
+variable "db_username" {
+  description = "Please enter your username for DB"
+  type        = string
+  default     = "admin"
+  sensitive   = true
+}
+
+variable "db_password" {
+  description = "Please enter your password for DB user"
+  type        = string
+  default     = "PaSsWoRd"
+  sensitive   = true
+}
+
+variable "db_port" {
+  description = "Please enter port for DB"
+  type        = string
+  default     = "3306"
 }
